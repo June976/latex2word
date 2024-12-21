@@ -161,6 +161,47 @@
 
 <div id="copyright">大部分内容都是基于开源的<a href="https://temml.org"><u><em>Temml</em></u></a>项目</div>
 
+<style>
+  #popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 40px;
+    background: linear-gradient(135deg, orange, lime, brown); 
+    color: white;
+    font-size: 18px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    opacity: 0;
+    animation: popupAnimation 1s forwards;
+  }
+
+  @keyframes popupAnimation {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -60%);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -40%);
+    }
+  }
+</style>
+
+<div id="popup">copied!</div>
+
 <script>
   const input = document.getElementById("demoSource");
   const mathOutput = document.getElementById('math-output');
@@ -244,6 +285,17 @@
     })
   }
 
+  function showPopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.animation = 'fadeOut 1s forwards';
+      }, 1500);
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 800);
+    }
+
   function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
@@ -264,6 +316,7 @@
     sleep(300).then(() => {
       btn.classList.remove("active-button")
     });
+    showPopup();
   }
 
   function listenCopyKeys() {
@@ -271,12 +324,10 @@
       if (event.ctrlKey && event.altKey && event.key === 'c') {
         event.preventDefault();
         copyMathML();
-        alert('Copied');
       }
       if (event.ctrlKey && event.altKey && event.key === 'C') {
         event.preventDefault();
         copyMathML();
-        alert('Copied');
       }
     });
   }
