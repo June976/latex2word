@@ -44,11 +44,11 @@
       <mpadded voffset="-0.2em">
         <mtext>W</mtext>
       </mpadded><mspace width="0.05em"></mspace>
-      <mtext>O</mtext><mspace width="0.05em"></mspace>
+      <mtext>o</mtext><mspace width="0.05em"></mspace>
       <mpadded voffset="0.2em">
-        <mtext>R</mtext>
+        <mtext>r</mtext>
       </mpadded><mspace width="0.05em"></mspace>
-      <mtext>D</mtext>
+      <mtext>d</mtext>
     </mrow>
   </math>
   
@@ -262,6 +262,19 @@
     navigator.clipboard.writeText(mml)
     sleep(300).then(() => {
       btn.classList.remove("active-button")
+    });
+  }
+
+  function pressCopyKeys() {
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.altKey && event.key === 'c') {
+        copyMathML()
+        alert('Copied');
+      }
+      if (event.ctrlKey && event.altKey && event.key === 'C') {
+        copyMathML()
+        alert('Copied');
+      }
     });
   }
 
