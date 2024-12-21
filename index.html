@@ -269,11 +269,13 @@
   function listenCopyKeys() {
     document.addEventListener('keydown', function(event) {
       if (event.ctrlKey && event.altKey && event.key === 'c') {
-        copyMathML()
+        event.preventDefault();
+        copyMathML();
         alert('Copied');
       }
       if (event.ctrlKey && event.altKey && event.key === 'C') {
-        copyMathML()
+        event.preventDefault();
+        copyMathML();
         alert('Copied');
       }
     });
