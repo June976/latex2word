@@ -15,8 +15,9 @@
 
 - 优化了显示，输入公式时可以同时查看公式以及 xml 文本的内容
 - 更改了部分默认设置
+- 加入快捷键
 
-部分内容咨询了[ChatGPT](https://chatgpt.com/)
+部分内容咨询了[ChatGPT](https://chatgpt.com/)。
 
 ### 参考
 
