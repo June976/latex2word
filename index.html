@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temml - Convert TeX to MathML</title>
+
+<link rel="stylesheet" href="./indexStyles.css">
+<link rel="stylesheet" href="./assets/Temml-Latin-Modern.css">
+
+<script src="./assets/temml.min.js"></script>
+<script src="./assets/mhchem.min.js"></script>
+<script src="./assets/physics.js"></script>
+<script src="./assets/texvc.js"></script>
+<script src="./xml-formatter.js"></script>
+</head>
+
+<body>
+<main>
+<nav>
+   <ul>
+     <li><a href="https://github.com/ronkok/Temml">GitHub</a></li>
+     <li><a href="./refs.html">Functions</a></li>
+     <li><a href="https://temml.org/docs/en/administration.html">Installation</a></li>
+   </ul>
+</nav>
+
+<h1 id="title">
+ 
+  <math xmlns="http://www.w3.org/1998/Math/MathML" class="temml" style="background: linear-gradient(to right, orange, lime, brown); -webkit-background-clip: text; color: transparent;">
+    <mrow>
+      <mtext >L</mtext><mspace width="0.05em"></mspace>
+      <mpadded voffset="-0.2em">
+        <mtext>A</mtext>
+      </mpadded><mspace width="0.05em"></mspace>
+      <mtext>T</mtext><mspace width="0.05em"></mspace>
+      <mpadded voffset="0.2em">
+        <mtext>E</mtext>
+      </mpadded><mspace width="0.05em"></mspace>
+      <mtext>X</mtext>
+    </mrow>
+    <mrow>
+      <mtext>2</mtext><mspace width="0.05em"></mspace>
+      <mpadded voffset="-0.2em">
+        <mtext>W</mtext>
+      </mpadded><mspace width="0.05em"></mspace>
+      <mtext>O</mtext><mspace width="0.05em"></mspace>
+      <mpadded voffset="0.2em">
+        <mtext>R</mtext>
+      </mpadded><mspace width="0.05em"></mspace>
+      <mtext>D</mtext>
+    </mrow>
+  </math>
+  
+</h1>
+ 
+<article>
+  <section id="demo-parent">
+    <p>将LaTeX公式转成Word中的公式。</p>
+    <p>Translate LaTeX equations into Word equations.</p>
+
+    <p></p>
+    
+    <div id="demo">
+    <div id="input">
+      <div>Input:</div>
+      <textarea class="ioArea" id="demoSource" spellcheck="false" wrap="soft">\def\d{\mathrm{d}}\oint_C \vec{B}\circ \d\vec{l} = \mu_0 \left( I_{\text{enc}} + \varepsilon_0 \frac{\d}{\d t} \int_S {\vec{E} \circ \hat{n}}\; \d a \right)</textarea>
+    </div>
+    <div id="spacer"></div>
+
+    <div id="output">
+      <div>Output:</div>
+      <div class="ioArea" id="demoRendering">
+        <div id="math-output">
+          <math display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
+        </div>
+      </div>
+    </div>
+
+    <div id="output">
+      <div>Output:</div>
+      <div class="ioArea" id="demoRendering">
+        <div id="mml-output">
+          <math display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
+        </div>
+      </div>
+    </div>
+    <div id="spacer"></div>
+
+    <div id="output">
+      <div>Output:</div>
+      <div class="ioArea" id="demoRendering">
+        <div id="flatmml-output">
+          <math display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+  </section>
+  <div>
+    <button onclick="createPermalink()" style="width: 30px; height: 30px; margin-top: 4px; border: 0.5px solid; border-radius: 5px" title="Create permalink"><svg width="16" height="16" viewBox="0 0 16 16"><!-- Generated by IcoMoon.io -->
+      <path fill="#000000" d="M6.879 9.934c-0.208 0-0.416-0.079-0.575-0.238-1.486-1.486-1.486-3.905 0-5.392l3-3c0.72-0.72 1.678-1.117 2.696-1.117s1.976 0.397 2.696 1.117c1.486 1.487 1.486 3.905 0 5.392l-1.371 1.371c-0.317 0.317-0.832 0.317-1.149 0s-0.317-0.832 0-1.149l1.371-1.371c0.853-0.853 0.853-2.241 0-3.094-0.413-0.413-0.963-0.641-1.547-0.641s-1.134 0.228-1.547 0.641l-3 3c-0.853 0.853-0.853 2.241 0 3.094 0.317 0.317 0.317 0.832 0 1.149-0.159 0.159-0.367 0.238-0.575 0.238z"></path>
+      <path fill="#000000" d="M4 15.813c-1.018 0-1.976-0.397-2.696-1.117-1.486-1.486-1.486-3.905 0-5.392l1.371-1.371c0.317-0.317 0.832-0.317 1.149 0s0.317 0.832 0 1.149l-1.371 1.371c-0.853 0.853-0.853 2.241 0 3.094 0.413 0.413 0.962 0.641 1.547 0.641s1.134-0.228 1.547-0.641l3-3c0.853-0.853 0.853-2.241 0-3.094-0.317-0.317-0.317-0.832 0-1.149s0.832-0.317 1.149 0c1.486 1.486 1.486 3.905 0 5.392l-3 3c-0.72 0.72-1.678 1.117-2.696 1.117z"></path>
+      </svg></button>
+    <span>   </span>
+    <input type="checkbox" id="wide" name="wide">
+    <label for="wide">Wide</label>&nbsp;
+    <div style="width: 390px; float: right;">
+      <div style="display: inline-block; width:35%">
+        <input type="checkbox" id="displayMode" name="displayMode" checked>
+        <label for="displayMode">Display Mode</label>&nbsp;<br>
+        <input type="checkbox" id="annotate" name="annotate">
+        <label for="annotate">Annotate</label>&nbsp;<br>
+        <input type="checkbox" id="xml" name="xml" checked>
+        <label for="xml">XML</label>&nbsp;
+      </div>
+      <div style="display: block; width: 64%; float: right;">
+      <div style="display: flex; justify-content: space-around; align-items: center;">
+        <select id="MathFont" onchange="updateMathFont()">
+          <option value="Latin-Modern">Latin Modern</option>
+          <option value="Local">Local font</option>
+          <option value="Asana">Asana</option>
+          <option value="STIX2">STIX TWO</option>
+          <option value="Libertinus">Libertinus</option>
+          <option value="Fira">Fira Math</option>
+        </select>&nbsp;&nbsp;
+        <select id="OutputType" onchange="reprocess()">
+          <option value="Flat MML">Flat MML</option>
+          <option value="MathML">MathML</option>
+        </select>&nbsp;&nbsp;
+        <button onclick="copyMathML()" id="copy" style="width: 30px; height: 30px; margin-top: 4px; border: 0.5px solid; border-radius: 5px" title="Copy"><svg width="16" height="16"><!-- Generated by IcoMoon.io -->
+          <path fill="#000000" d="M10 4v-4h-7l-3 3v9h6v4h10v-12h-6zM3 1.414v1.586h-1.586l1.586-1.586zM1 11v-7h3v-3h5v3l-3 3v4h-5zM9 5.414v1.586h-1.586l1.586-1.586zM15 15h-8v-7h3v-3h5v10z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+
+<div id="why">
+  
+  <h4>一、目的</h4>
+  <p>优雅地将 LaTeX 公式转换成 Microsoft Word 中的公式（xml 格式），尽管 Microsoft Word 中已有相关功能，但是非常难用，并且可能出现 bugs。</p>
+
+</div>
+
+<div id="why">
+  <h4>二、使用方法</h4>
+  <ol>
+    <li>在输入栏使用 LaTeX 语法输入数学公式；</li>
+    <li>勾选 XML 选项，使用 Flat MML 模式；</li>
+    <li>点击 Copy 按钮；</li>
+    <li>在 Word 中，以文本方式粘贴内容。</li>
+  </ol>
+
+</div>
+<br>
+
+</article>
+
+<div id="copyright">大部分内容都是基于开源的<a href="https://temml.org"><u><em>Temml</em></u></a>项目</div>
+
+<script>
+  const input = document.getElementById("demoSource");
+  const mathOutput = document.getElementById('math-output');
+  const mmlOutput = document.getElementById('mml-output');
+  const flatmmlOutput = document.getElementById('flatmml-output');
+  const mode = document.querySelector('input[id="displayMode"]');
+  const annotate = document.querySelector('input[id="annotate"]');
+  const xml = document.querySelector('input[id="xml"]');
+  const output = document.getElementById("OutputType")
+
+  const wide = document.getElementById("wide");
+  const demo = document.getElementById("demo");
+  wide.addEventListener('change', () => {  demo.classList.toggle("wide") });
+
+  const hash = location.hash
+  if (hash && hash.length > 1) {
+    getHash()
+  } else {
+    if (input.value !== `\\def\\d{\\mathrm{d}}
+
+\\oint_C \\vec{B}\\circ \\d\\vec{l} = \\mu_0 \\left( I_{\\text{enc}} + \\varepsilon_0 \\frac{\\d}{\\d t} \\int_S \\vec{E} \\circ \\hat{n}\\; \\d a \\right)`) {
+    }
+    reprocess()
+  }
+
+  input.addEventListener("input", reprocess, false);
+  mode.addEventListener('change', () => { reprocess() });
+  annotate.addEventListener('change', () => { reprocess() });
+  xml.addEventListener('change', () => { reprocess() });
+  window.addEventListener('hashchange', () => { getHash() }, false)
+
+  function processMath() {
+    mathOutput.innerHTML = "";
+    temml.render(input.value, mathOutput, {
+        displayMode: mode.checked,
+        annotate: annotate.checked,
+        xml: xml.checked
+    });
+    temml.postProcess(mathOutput)
+  }
+
+  function processmml() {
+    mmlOutput.innerHTML = ""
+    mmlOutput.appendChild(document.createElement("pre"))
+    let mml = temml.renderToString(input.value, {
+      displayMode: mode.checked,
+      annotate: annotate.checked,
+      xml: xml.checked
+    })
+    const format = require('xml-formatter');
+    mml = format(mml, { indentation: '  ', collapseContent: true, lineSeparator: '\n' });
+    mmlOutput.firstChild.innerText = mml
+  }
+
+  function processflatmml() {
+    flatmmlOutput.innerHTML = ""
+    flatmmlOutput.appendChild(document.createElement("pre"))
+    let flatmml = temml.renderToString(input.value, {
+      displayMode: mode.checked,
+      annotate: annotate.checked,
+      xml: xml.checked
+    })
+    flatmmlOutput.firstChild.innerText = flatmml
+  }
+
+  function reprocess() {
+    processMath()
+    processmml()
+    processflatmml()
+  }
+
+  function updateMathFont() {
+    // Change the CSS style sheet.
+    const temmlRegEx = /assets\/Temml-.+\.css$/
+    const links = [...document.head.getElementsByTagName('link')];
+    links.forEach(link => {
+      if (temmlRegEx.test(link.href)) {
+        link.setAttribute("href", `./assets/Temml-${document.getElementById("MathFont").value}.css`);
+      }
+    })
+  }
+
+  function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+
+  function copyMathML() {
+    const btn = document.getElementById("copy")
+    btn.classList.add("active-button")
+    let mml = temml.renderToString(input.value, {
+      displayMode: mode.checked,
+      annotate: annotate.checked,
+      xml: xml.checked
+    })
+    if (output.value !== "Flat MML") {
+      const format = require('xml-formatter');
+      mml = format(mml, { indentation: '  ', collapseContent: true, lineSeparator: '\n' })
+    }
+    navigator.clipboard.writeText(mml)
+    sleep(300).then(() => {
+      btn.classList.remove("active-button")
+    });
+  }
+
+  const symbols = /[\r\n%#"()<>?[\\\]^`{|}]/g
+  function createPermalink() {
+    const tex = input.value
+    if (tex && tex.length > 0) {
+      location.hash = "#" + tex.replace(symbols, encodeURIComponent)
+    }
+  }
+
+  function getHash()  {
+    const hash = location.hash
+    if (hash && hash.length > 1) {
+      const tex = decodeURIComponent(hash.slice(1))
+      input.textContent = tex
+      reprocess()
+    }
+  }
+</script>
+</main>
+</body>
+</html>
