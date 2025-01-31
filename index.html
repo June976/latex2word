@@ -244,7 +244,8 @@
         historyIndex--;
         input.value = inputHistory[historyIndex] || '';
       }
-      event.preventDefault(); 
+      event.preventDefault();
+      reprocess()
     } 
     else if (event.key === 'ArrowDown') {
       if (historyIndex < inputHistory.length - 1) {
@@ -256,6 +257,7 @@
         input.value = '';
       }
       event.preventDefault();
+      reprocess()
     }
   });
 
