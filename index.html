@@ -161,7 +161,7 @@
 
 </div>
 
-<div id="why">
+<div id="instructions">
   <h4>二、使用方法</h4>
   <ol>
     <li>在输入栏使用 LaTeX 语法输入数学公式；</li>
@@ -169,8 +169,16 @@
     <li>点击 Copy 按钮或使用 Ctrl+Alt+c/C 快捷键复制内容；</li>
     <li>在 Word 中，以文本方式粘贴内容。</li>
   </ol>
-
 </div>
+
+<div id="updates">
+  <h4>三、更新内容</h4>
+  <ol>
+    <li>点击 Save 按钮或使用 Ctrl+Alt+s/S 快捷键保存历史输入内容（刷新浏览器后内容重置）；</li>
+    <li>点击 Back (Ctrl+&uparrow;) 按钮和 Next (Ctrl+&downarrow;) 按钮访问历史保存内容；</li>
+  </ol>
+</div>
+
 <br>
 
 </article>
@@ -234,6 +242,7 @@
   const demo = document.getElementById("demo");
   wide.addEventListener('change', () => {  demo.classList.toggle("wide") });
   listenCopyKeys();
+  listenSaveKeys();
   listenHistoryBrowse();
   const hash = location.hash
   let inputHistory = JSON.parse(sessionStorage.getItem('inputHistory')) || [];
@@ -395,6 +404,19 @@
       else if (event.ctrlKey && event.altKey && event.key === 'C') {
         event.preventDefault();
         copyMathML();
+      }
+    });
+  }
+
+  function listenSaveKeys() {
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.altKey && event.key === 's') {
+        event.preventDefault();
+        saveInput();
+      }
+      else if (event.ctrlKey && event.altKey && event.key === 'S') {
+        event.preventDefault();
+        saveInput();
       }
     });
   }
