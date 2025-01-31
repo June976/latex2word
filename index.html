@@ -218,9 +218,10 @@
   const demo = document.getElementById("demo");
   wide.addEventListener('change', () => {  demo.classList.toggle("wide") });
   listenCopyKeys();
+  listenHistoryBrowse();
   const hash = location.hash
   let inputHistory = JSON.parse(sessionStorage.getItem('inputHistory')) || [];
-  let historyIndex = inputHistory.length; // 记录当前索引
+  let historyIndex = inputHistory.length; // history index value
 
 
   if (hash && hash.length > 1) {
@@ -238,29 +239,6 @@
   annotate.addEventListener('change', () => { reprocess() });
   xml.addEventListener('change', () => { reprocess() });
   window.addEventListener('hashchange', () => { getHash() }, false)
-  input.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowUp') {
-      if (historyIndex > 0) {
-        historyIndex--;
-        input.value = inputHistory[historyIndex] || '';
-      }
-      event.preventDefault();
-      reprocess()
-    } 
-    else if (event.key === 'ArrowDown') {
-      if (historyIndex < inputHistory.length - 1) {
-        historyIndex++;
-        input.value = inputHistory[historyIndex] || '';
-      } 
-      else {
-        historyIndex = inputHistory.length;
-        input.value = '';
-      }
-      event.preventDefault();
-      reprocess()
-    }
-  });
-
   
   function processMath() {
     mathOutput.innerHTML = "";
@@ -363,11 +341,35 @@
         copyMathML();
         saveInput();
       }
-      if (event.ctrlKey && event.altKey && event.key === 'C') {
+      else if (event.ctrlKey && event.altKey && event.key === 'C') {
         event.preventDefault();
         copyMathML();
         saveInput();
       }
+    });
+  }
+
+  function listenHistoryBrowse() {
+    document.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (historyIndex > 0) {
+          historyIndex--;
+          input.value = inputHistory[historyIndex] || '';
+        }
+      } 
+      else if (event.ctrlKey && event.key === 'ArrowDown') {
+        if (historyIndex < inputHistory.length - 1) {
+          historyIndex++;
+          input.value = inputHistory[historyIndex] || '';
+        } 
+        else {
+          historyIndex = inputHistory.length;
+          input.value = '';
+        }
+        event.preventDefault();
+      }
+      reprocess()
     });
   }
 
