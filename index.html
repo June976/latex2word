@@ -218,8 +218,11 @@
   const demo = document.getElementById("demo");
   wide.addEventListener('change', () => {  demo.classList.toggle("wide") });
   listenCopyKeys();
-
   const hash = location.hash
+  let inputHistory = JSON.parse(sessionStorage.getItem('inputHistory')) || [];
+  let historyIndex = inputHistory.length; // 记录当前索引
+
+
   if (hash && hash.length > 1) {
     getHash()
   } else {
@@ -235,13 +238,34 @@
   annotate.addEventListener('change', () => { reprocess() });
   xml.addEventListener('change', () => { reprocess() });
   window.addEventListener('hashchange', () => { getHash() }, false)
+  input.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowUp') {
+      if (historyIndex > 0) {
+        historyIndex--;
+        input.value = inputHistory[historyIndex] || '';
+      }
+      event.preventDefault(); 
+    } 
+    else if (event.key === 'ArrowDown') {
+      if (historyIndex < inputHistory.length - 1) {
+        historyIndex++;
+        input.value = inputHistory[historyIndex] || '';
+      } 
+      else {
+        historyIndex = inputHistory.length;
+        input.value = '';
+      }
+      event.preventDefault();
+    }
+  });
 
+  
   function processMath() {
     mathOutput.innerHTML = "";
     temml.render(input.value, mathOutput, {
-        displayMode: mode.checked,
-        annotate: annotate.checked,
-        xml: xml.checked
+      displayMode: mode.checked,
+      annotate: annotate.checked,
+      xml: xml.checked
     });
     temml.postProcess(mathOutput)
   }
@@ -288,15 +312,24 @@
   }
 
   function showPopup() {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'block';
-      setTimeout(() => {
-        popup.style.animation = 'fadeOut 1s forwards';
-      }, 1500);
-      setTimeout(() => {
-        popup.style.display = 'none';
-      }, 800);
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
+    setTimeout(() => {
+      popup.style.animation = 'fadeOut 1s forwards';
+    }, 1500);
+    setTimeout(() => {
+      popup.style.display = 'none';
+    }, 800);
+  }
+
+  function saveInput() {
+    const currentValue = input.value.trim();
+    if (currentValue && (inputHistory.length === 0 || inputHistory[inputHistory.length - 1] !== currentValue)) {
+      inputHistory.push(currentValue);
+      sessionStorage.setItem('inputHistory', JSON.stringify(inputHistory));
     }
+    historyIndex = inputHistory.length; // set index
+  }
 
   function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -326,10 +359,12 @@
       if (event.ctrlKey && event.altKey && event.key === 'c') {
         event.preventDefault();
         copyMathML();
+        saveInput();
       }
       if (event.ctrlKey && event.altKey && event.key === 'C') {
         event.preventDefault();
         copyMathML();
+        saveInput();
       }
     });
   }
