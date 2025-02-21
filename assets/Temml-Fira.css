@@ -1,10 +1,7 @@
 /*
-The Latin Modern fonts are released under the GUST font license, which is
-legally equivalent to the LaTeX Project Public License. See the files in this
-directory for details. The fonts can be obtained from several TeX distributions
-or package managers.
+Fira Math fonts are released under the SIL OPEN FONT LICENSE Version 1.1.
 
-The Latin Modern WOFF font has been obtained from
+The Fira Math WOFF2 font has been obtained from
 http://www.gust.org.pl/projects/e-foundry/
 
 The Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
@@ -20,8 +17,8 @@ Unicode range 1D49C to 1D4B5.
 }
 
 @font-face {
-  font-family: Latin Modern Math;
-  src: url('./latinmodernmath.woff2');
+  font-family: Fira Math;
+  src: url('FiraMath-Regular.woff2');
 }
 
 math {
@@ -43,7 +40,7 @@ math * {
 }
 
 math {
-  font-family: "Latin Modern Math", math;
+  font-family: "Fira Math", math;
 }
 
 /* Next line is active in Firefox and Safari.

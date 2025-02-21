@@ -18,7 +18,7 @@
 - 加入快捷键
 - 添加历史访问功能
 
-部分内容咨询了 [ChatGPT](https://chatgpt.com/)。
+部分内容咨询了 [DeepSeek](https://www.deepseek.com/)、[ChatGPT](https://chatgpt.com/)。
 
 ### 参考
 

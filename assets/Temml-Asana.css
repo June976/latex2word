@@ -1,27 +1,17 @@
 /*
-The Latin Modern fonts are released under the GUST font license, which is
-legally equivalent to the LaTeX Project Public License. See the files in this
-directory for details. The fonts can be obtained from several TeX distributions
-or package managers.
+Asana Math is released under the SIL Open Font License. See the files in this
+directory for details. The font can be obtained from several TeX distributions
+or package managers. The font does not seem to have a corresponding "non-MATH"
+font, it is recommended to use a Palatino-like font for the surrounding text.
 
-The Latin Modern WOFF font has been obtained from
-http://www.gust.org.pl/projects/e-foundry/
-
-The Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
-have been changed from ASCII to Unicode Mathematical Alphanumeric Symbols Script capitals,
-Unicode range 1D49C to 1D4B5.
+The WOFF fonts have been obtained from
+http://mirrors.ctan.org/fonts/
 */
 
 @font-face {
-  font-family: 'Temml';
-  src: url('Temml.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Latin Modern Math;
-  src: url('./latinmodernmath.woff2');
+  font-family: Asana Math;
+  src: local('Asana Math'), local('Asana-Math'),
+       url('./Asana-Math.woff2');
 }
 
 math {
@@ -43,20 +33,16 @@ math * {
 }
 
 math {
-  font-family: "Latin Modern Math", math;
+  font-family: Asana Math, math;
 }
 
 /* Next line is active in Firefox and Safari.
  * Not in Chromium, which recognizes display: "block math" written inline. */
 math.tml-display { display: block; }
 
-*.mathscr {
-  font-family: "Temml";
-}
-
-/* Chromium prime alignment */
+*.mathcal,
 mo.tml-prime {
-  font-family: Temml;
+  font-feature-settings: 'salt';
 }
 
 /* Prevent f' from overlapping in Chromium */

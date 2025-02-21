@@ -1,27 +1,15 @@
 /*
-The Latin Modern fonts are released under the GUST font license, which is
-legally equivalent to the LaTeX Project Public License. See the files in this
-directory for details. The fonts can be obtained from several TeX distributions
-or package managers.
+XITS is released under the SIL Open Font License.
+See https://github.com/stipub/stixfonts/blob/master/OFL.txt details.
 
-The Latin Modern WOFF font has been obtained from
-http://www.gust.org.pl/projects/e-foundry/
-
-The Temml.woff2 is a clone of KaTeX_Script-Regular, except that the code points
-have been changed from ASCII to Unicode Mathematical Alphanumeric Symbols Script capitals,
-Unicode range 1D49C to 1D4B5.
+The STIX2 WOFF font has been obtained from
+https://github.com/stipub/stixfonts
 */
 
 @font-face {
-  font-family: 'Temml';
-  src: url('Temml.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Latin Modern Math;
-  src: url('./latinmodernmath.woff2');
+  font-family: STIX2;
+  src: local('STIXTwoMath-Regular'),
+       url('./STIXTwoMath-Regular.woff2');
 }
 
 math {
@@ -42,21 +30,20 @@ math * {
   border-color: currentColor;
 }
 
-math {
-  font-family: "Latin Modern Math", math;
-}
-
 /* Next line is active in Firefox and Safari.
  * Not in Chromium, which recognizes display: "block math" written inline. */
 math.tml-display { display: block; }
 
-*.mathscr {
-  font-family: "Temml";
+math {
+  font-family: STIX2, math;
 }
 
-/* Chromium prime alignment */
+*.mathscr {
+  font-feature-settings: 'ss01';
+}
+
 mo.tml-prime {
-  font-family: Temml;
+  font-feature-settings: 'ss04';
 }
 
 /* Prevent f' from overlapping in Chromium */
