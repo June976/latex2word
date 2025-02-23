@@ -17,6 +17,7 @@
 - 更改了部分默认设置
 - 加入快捷键
 - 添加历史访问功能
+- 保存图片
 
 部分内容咨询了 [DeepSeek](https://www.deepseek.com/)、[ChatGPT](https://chatgpt.com/)。
 
