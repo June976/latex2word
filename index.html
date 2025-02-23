@@ -14,6 +14,9 @@
 <script src="./assets/texvc.js"></script>
 <script src="./xml-formatter.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +31,7 @@
 
 <h1 id="title">
  
-  <math xmlns="http://www.w3.org/1998/Math/MathML" class="temml" style="background: linear-gradient(to right, orange, lime, brown); -webkit-background-clip: text; color: transparent;">
+  <math id="math-title" xmlns="http://www.w3.org/1998/Math/MathML" class="temml" style="background: linear-gradient(to right, orange, lime, brown); -webkit-background-clip: text; color: transparent;">
     <mrow>
       <mtext >L</mtext><mspace width="0.05em"></mspace>
       <mpadded voffset="-0.2em">
@@ -61,27 +64,37 @@
     <p>Translate LaTeX equations into Word equations.</p>
 
     <p></p>
+
+    <div id="demoinput", class="wide">
+      <div id="input">
+        <div>Input:</div>
+        <textarea class="ioArea" id="demoSource" spellcheck="false" wrap="soft">\def\d{\mathrm{d}}\oint_C \vec{B}\circ \d\vec{l} = \mu_0 \left( I_{\text{enc}} + \varepsilon_0 \frac{\d}{\d t} \int_S {\vec{E} \circ \hat{n}}\; \d a \right)</textarea>
+      </div>
+    </div>
     
     <div id="demo">
-    <div id="input">
-      <div>Input:</div>
-      <textarea class="ioArea" id="demoSource" spellcheck="false" wrap="soft">\def\d{\mathrm{d}}\oint_C \vec{B}\circ \d\vec{l} = \mu_0 \left( I_{\text{enc}} + \varepsilon_0 \frac{\d}{\d t} \int_S {\vec{E} \circ \hat{n}}\; \d a \right)</textarea>
+    <div id="output">
+      <div>Output(Temml):</div>
+      <div class="ioArea" id="demoRendering">
+        <div id="math-output">
+          <math id="mathTemml-Output" display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
+        </div>
+      </div>
     </div>
     <div id="spacer"></div>
 
     <div id="output">
-      <div>Output:</div>
+      <div>Output(KaTeX):</div>
       <div class="ioArea" id="demoRendering">
         <div id="captureArea">
-        <div id="math-output">
-          <math display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
-        </div>
+          <div id="katex-output">
+          </div>
         </div>
       </div>
     </div>
 
     <div id="output">
-      <div>Output:</div>
+      <div>Output(MathML):</div>
       <div class="ioArea" id="demoRendering">
         <div id="mml-output">
           <math display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
@@ -91,7 +104,7 @@
     <div id="spacer"></div>
 
     <div id="output">
-      <div>Output:</div>
+      <div>Output(Flat MathML):</div>
       <div class="ioArea" id="demoRendering">
         <div id="flatmml-output">
           <math display="block"><mrow><msub><mo movablelimits="false">∮</mo><mi>C</mi></msub><mover accent="true"><mi>B</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mover accent="true"><mi>l</mi><mo stretchy="false">⃗</mo></mover><mo>=</mo><msub><mi>μ</mi><mn>0</mn></msub><mrow><mo fence="true" form="prefix">(</mo><msub><mi>I</mi><mtext>enc</mtext></msub><mo>+</mo><msub><mi>ε</mi><mn>0</mn></msub><mfrac><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mrow><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>t</mi></mrow></mfrac><msub><mo movablelimits="false">∫</mo><mi>S</mi></msub><mover accent="true"><mi>E</mi><mo stretchy="false">⃗</mo></mover><mo>∘</mo><mover accent="true"><mi>n</mi><mo stretchy="false">^</mo></mover><mspace width="0.2778em"></mspace><mpadded lspace="0" width="+0em"><mi mathvariant="normal">d</mi></mpadded><mi>a</mi><mo fence="true" form="postfix">)</mo></mrow></mrow></math>
@@ -237,6 +250,7 @@
 <script>
   const input = document.getElementById("demoSource");
   const mathOutput = document.getElementById('math-output');
+  const katexOutput = document.getElementById('katex-output');
   const mmlOutput = document.getElementById('mml-output');
   const flatmmlOutput = document.getElementById('flatmml-output');
   const mode = document.querySelector('input[id="displayMode"]');
@@ -284,6 +298,19 @@
     temml.postProcess(mathOutput)
   }
 
+  function processKatex() {
+    try {
+        katex.render(input.value, katexOutput, {
+            throwOnError: true,
+            displayMode: mode.checked,
+            annotate: annotate.checked,
+            font: "KaTeX_Caligraphic",
+        });
+    } catch (e) {
+        katexOutput.innerHTML = `<span style="color: red;">Error: ${e.message}</span>`;
+    }
+  }
+
   function processmml() {
     mmlOutput.innerHTML = ""
     mmlOutput.appendChild(document.createElement("pre"))
@@ -309,9 +336,10 @@
   }
 
   function reprocess() {
-    processMath()
-    processmml()
-    processflatmml()
+    processMath();
+    processKatex();
+    processmml();
+    processflatmml();
   }
 
   function updateMathFont() {
@@ -322,7 +350,7 @@
       if (temmlRegEx.test(link.href)) {
         link.setAttribute("href", `./assets/Temml-${document.getElementById("MathFont").value}.css`);
       }
-    })
+    });
   }
 
   function showPopup() {
@@ -469,12 +497,12 @@
           textRendering: "optimizeLegibility",
           letterRendering: true,
           allowTaint: true,
-          scale: 2,
+          scale: 3,
         }).then(canvas => {
           capturedImage = canvas.toDataURL("image/png");
           let link = document.createElement("a");
           link.href = capturedImage;
-          link.download = "screenshot.png";
+          link.download = "formula.png";
           link.click();
         });
       });
@@ -484,12 +512,12 @@
         textRendering: "optimizeLegibility",
         letterRendering: true,
         allowTaint: true,
-        scale: 2,
+        scale: 3,
       }).then(canvas => {
         capturedImage = canvas.toDataURL("image/png");
         let link = document.createElement("a");
         link.href = capturedImage;
-        link.download = "screenshot.png";
+        link.download = "formula.png";
         link.click();
       });
     }

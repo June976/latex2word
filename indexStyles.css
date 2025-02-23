@@ -46,7 +46,7 @@ article, #title {
   margin: 0 auto;
 }
 
-#demo {
+#demo, #demoinput {
   margin: 0px 2.5px 0px 2.5px;
   overflow: fixed;
 }
@@ -90,14 +90,14 @@ a {
   width: 100%;
 }
 
-#demo {
+#demo, #demoinput {
   width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.wide #demo {
+.wide #demo, #demoinput {
   flex-direction: column;
 }
 
@@ -130,7 +130,7 @@ a {
 }
 
 .wide .ioArea {
-  width: 760px;
+  width: 765px;
 }
 
 math {
